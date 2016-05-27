@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <style type="text/css">
+            html{ background-color: white; }
+        header{ border-bottom: 1px solid #ccc; padding: 25px 0; }
+        span {
+            padding: 10px 15px;
+            margin: 10px;
+            display: inline-block;
+            background-color: #e8e8e8;
+        }
+        .hover{ opacity: .4; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>MNNavigationMenu</h1>
+        <mark>
+            使用前请详细阅读 文档 使用规则
+        </mark>
+    </header>
+    <span tapmode="hover" onclick="fnOpen()">open</span>
+    <span tapmode="hover" onclick="fnSetIndex()">setIndex</span>
+    <span tapmode="hover" onclick="fnClose()">close</span>
+    <span tapmode="hover" onclick="fnShow()">show</span>
+    <span tapmode="hover" onclick="fnHide()">hide</span>
+</body>
+<script type="text/javascript">
+    var MNNavigationMenu;
+    apiready = function() {
+        MNNavigationMenu = api.require('MNNavigationMenu');
+    };
+    function fnOpen(){
+        MNNavigationMenu.open({
+            rect: {
+                x: 0,
+                y: 0,
+                w: api.winWidth,
+                h: 44
+            },
+            index: 0,
+            animation: true,
+            styles: {
+                column: 4,
+                bg: '#eee',
+                item: {
+                    width: api.winWidth / 4,
+                    bg: '#eee',
+                    active: '#eee',
+                    highlight: '#eee',
+                    title: {
+                        marginB: 6,
+                        size: 14,
+                        height: 44,
+                        color: '#888',
+                        active: '#f00',
+                        highlight: '#f00'
+                    }
+                }
+            },
+            items: [{
+                title: '菜单项0'
+            }, {
+                title: '菜单项1'
+            }, {
+                title: '菜单项2'
+            }, {
+                title: '菜单项3'
+            }, {
+                title: '菜单项4'
+            }, {
+                title: '菜单项5'
+            }, {
+                title: '菜单项6'
+            }],
+            fixed: false
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    function fnSetIndex(){
+        MNNavigationMenu.setIndex({
+            index: 3
+        }, function(ret, err) {
+            if (ret) {
+                alert(JSON.stringify(ret));
+            } else {
+                alert(JSON.stringify(err));
+            }
+        });
+    }
+    function fnClose(){
+        MNNavigationMenu.close();
+    }
+    function fnShow(){
+        MNNavigationMenu.show();
+    }
+    function fnHide(){
+        MNNavigationMenu.hide();
+    }
+    
+</script>
+</html>
